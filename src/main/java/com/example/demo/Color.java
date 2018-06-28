@@ -12,7 +12,7 @@ public class Color {
 
     private String colorName;
 
-    @ManyToMany()
+    @ManyToMany(mappedBy = "colors")
     private Set<Person> owners;
 
     public Color() {

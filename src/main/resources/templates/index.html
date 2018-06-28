@@ -9,8 +9,8 @@
         <h1>People and their Favorite Colors</h1>
         <div th:each="eachOwner:${ownerlist}">
             <h2 th:text="${eachOwner.myName}"></h2>
-            <h3 th:text="${#lists.size(colorlist)>0}?'My Favorite Colors':'No colors for me'"></h3>
-                <div th:each="eachColor:${colorlist}">
+            <h3 th:text="${#lists.size(eachOwner.colors)>0}?'My Favorite Colors':'No colors for me'"></h3>
+                <div th:each="eachColor:${eachOwner.colors}">
                     <p th:text="${eachColor.colorName}"></p>
                 </div>
         </div>
