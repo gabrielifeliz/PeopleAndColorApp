@@ -2,15 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Pets and owners</title>
+    <title>People and their Favorite Colors</title>
 </head>
 <body>
     <div class="container">
         <h1>People and their Favorite Colors</h1>
         <div th:each="eachOwner:${ownerlist}">
             <h2 th:text="${eachOwner.myName}"></h2>
-            <h3 th:text="${#lists.size(eachOwner.colors)>0}?'My Favorite Colors':'No colors for me'"></h3>
-                <div th:each="eachColor:${eachOwner.colors}">
+            <h3 th:text="${#lists.size(colorlist)>0}?'My Favorite Colors':'No colors for me'"></h3>
+                <div th:each="eachColor:${colorlist}">
                     <p th:text="${eachColor.colorName}"></p>
                 </div>
         </div>
