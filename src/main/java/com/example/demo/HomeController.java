@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class HomeController {
@@ -82,5 +83,16 @@ public class HomeController {
         c = new Color();
         c.setColorName("violet");
         colorList.save(c);
+    }
+
+    @RequestMapping("/search")
+    public String showSearchResults(HttpServletRequest request, Model model)
+    {
+        //Get the search string from the result form
+        String searchString = request.getParameter("search");
+        model.addAttribute("search", searchString);
+        model.addAttribute("ownerlist",
+                colorOwners.findAllByMyNameContainingIgnoreCase(searchString));
+        return "index";
     }
 }
