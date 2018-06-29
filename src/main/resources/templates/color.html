@@ -2,21 +2,34 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <th:block th:replace="base :: csslinks"> </th:block>
     <title>Color Form</title>
 </head>
 <body>
-        <form th:action="@{/savecolor}" th:object="${person}" method="post">
-                    <div class="container">
-                        <input type="hidden" th:field="*{id}">
-                        <input type="text" th:field="*{myName}">
-                        <select th:field="*{colors}" multiple>
-                            <option th:each ="eachColor:${colorlist}"
-                                    th:value="${eachColor.id}"
-                                    th:text="${eachColor.colorName}"></option>
-                        </select>
-                    </div>
+<nav th:replace="base :: navbar"></nav>
+<br/>
+<div class="container">
+    <h1>People and Favorite Colors Form</h1>
+    <form th:action="@{/savecolor}" th:object="${person}" method="post">
+        <div class="form-group">
+            <input type="hidden" class="form-control" th:field="*{id}">
+            <label for="personName">Enter Person's Name:</label>
+            <input type="text" class="form-control" th:field="*{myName}">
+        </div>
+        <div class="form-group">
+            <label for="colorList">Color List:</label>
+            <select class="form-control" th:field="*{colors}" multiple>
+                <option th:each ="eachColor:${colorlist}"
+                        th:value="${eachColor.id}"
+                        th:text="${eachColor.colorName}"></option>
+            </select>
+        </div>
 
-            <button type="submit">Save Color</button>
-        </form>
+        <button type="submit" class="btn btn-info btn-lg">
+            Save Person and Favorite Colors</button>
+    </form>
+    <br /><br />
+</div>
+<th:block th:replace="base :: jslinks"></th:block>
 </body>
 </html>

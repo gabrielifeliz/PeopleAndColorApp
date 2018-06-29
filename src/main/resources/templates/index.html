@@ -2,18 +2,31 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <th:block th:replace="base :: csslinks"></th:block>
     <title>People and their Favorite Colors</title>
 </head>
 <body>
-    <div class="container">
-        <h1>People and their Favorite Colors</h1>
-        <div th:each="eachOwner:${ownerlist}">
-            <h2 th:text="${eachOwner.myName}"></h2>
-            <h3 th:text="${#lists.size(eachOwner.colors)>0}?'My Favorite Colors':'No colors for me'"></h3>
-                <div th:each="eachColor:${eachOwner.colors}">
-                    <p th:text="${eachColor.colorName}"></p>
-                </div>
-        </div>
+<nav th:replace="base :: navbar"></nav>
+<div class="jumbotron jumbotron-fluid text-center">
+    <div class="jumbotron text-sm-center">
+        <h1>People and Their Favorite Colors</h1><br/><br/>
     </div>
+</div>
+<br/>
+<div class="container jumbotron" th:if="${search}!=null" th:inline="text">You searched for [[${search}]]:</div>
+<div class="container" th:each="eachOwner:${ownerlist}">
+    <div class="jumbotron">
+        <ul class="list-group">
+            <li class="list-group-item"><span th:text="${eachOwner.myName}"></span></li>
+            <li class="list-group-item"><strong><span th:text="${#lists.size(eachOwner.colors)>0}
+                ?'My Favorite Colors:':'No colors for me'"></span></strong>
+                <div th:each="eachColor:${eachOwner.colors}">
+                    <span th:text="${eachColor.colorName}"> </span></div>
+            </li>
+        </ul>
+        <br/><br/>
+    </div>
+</div>
+<th:block th:replace="base :: jslinks"></th:block>
 </body>
 </html>
