@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @Controller
 public class HomeController {
@@ -43,7 +45,7 @@ public class HomeController {
     }
 
 /*  @RequestMapping("/updatecolorlist")
-    public void updateColorList()
+    public void updateColorList(@ModelAttribute("color") Person person)
     {
         Color c;
         c = new Color();
@@ -55,34 +57,15 @@ public class HomeController {
     public void fillTables()
     {
         Color c;
+        ArrayList<String> someColors = new ArrayList<>(Arrays
+                .asList("White", "Black", "Grey", "Yellow", "Red",
+                "Blue", "Green", "Brown", "Pink", "Orange", "Purple"));
 
-        c = new Color();
-        c.setColorName("red");
-        colorList.save(c);
-
-        c = new Color();
-        c.setColorName("orange");
-        colorList.save(c);
-
-        c = new Color();
-        c.setColorName("yellow");
-        colorList.save(c);
-
-        c = new Color();
-        c.setColorName("green");
-        colorList.save(c);
-
-        c = new Color();
-        c.setColorName("blue");
-        colorList.save(c);
-
-        c = new Color();
-        c.setColorName("indigo");
-        colorList.save(c);
-
-        c = new Color();
-        c.setColorName("violet");
-        colorList.save(c);
+        for (String s: someColors) {
+            c = new Color();
+            c.setColorName(s);
+            colorList.save(c);
+        }
     }
 
     @RequestMapping("/search")
