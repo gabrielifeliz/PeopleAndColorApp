@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:replace="base :: csslinks"> </th:block>
+    <title>Color Form</title>
+</head>
+<body>
+<nav th:replace="base :: navbar"></nav>
+<br/>
+<div class="container">
+    <h1>People and Favorite Colors Form</h1>
+    <form th:action="@{/savecolorlist}" th:object="${color}" method="post">
+        <div class="form-group">
+            <input type="hidden" class="form-control" th:field="*{id}">
+            <label for="newcolor">Enter New Color:</label>
+            <input type="text" class="form-control" th:field="*{colorName}">
+        </div>
+        <button type="submit" class="btn btn-info btn-lg">
+            Save New Color</button>
+        <br/><br/>
+    </form>
+    <br /><br />
+</div>
+<th:block th:replace="base :: jslinks"></th:block>
+</body>
+</html>

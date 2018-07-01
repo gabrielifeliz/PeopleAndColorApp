@@ -3,10 +3,7 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +26,7 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping("/addcolor")
+    @GetMapping("/addcolor")
     public String addPersonColorInfo(Model model)
     {
         model.addAttribute("person", new Person());
@@ -44,14 +41,19 @@ public class HomeController {
         return "redirect:/";
     }
 
-/*  @RequestMapping("/updatecolorlist")
-    public void updateColorList(@ModelAttribute("color") Person person)
+  @GetMapping("/updatecolorlist")
+    public String updateColorList(Model model)
     {
-        Color c;
-        c = new Color();
-        c.setColorName("");
-        colorList.save(c);
-    }*/
+        model.addAttribute("color", new Color());
+        return "colorslist";
+    }
+
+  @PostMapping("/savecolorlist")
+    public String updateColorList(@ModelAttribute("color") Color color)
+    {
+        colorList.save(color);
+        return "redirect:/addcolor";
+    }
 
     @PostConstruct
     public void fillTables()
