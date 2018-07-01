@@ -41,18 +41,31 @@ public class HomeController {
         return "redirect:/";
     }
 
-  @GetMapping("/updatecolorlist")
+    @GetMapping("/updatecolorlist")
     public String updateColorList(Model model)
     {
         model.addAttribute("color", new Color());
         return "colorslist";
     }
 
-  @PostMapping("/savecolorlist")
+    @PostMapping("/savecolorlist")
     public String updateColorList(@ModelAttribute("color") Color color)
     {
         colorList.save(color);
         return "redirect:/addcolor";
+    }
+
+    @RequestMapping("/update/{id}")
+    public String updatePost( @PathVariable("id") long id, Model model){
+        model.addAttribute("person", colorOwners.findById(id).get());
+        model.addAttribute("colorlist",colorList.findAll());
+        return "color";
+    }
+
+    @RequestMapping("/delete/{id}")
+    public  String deletePost(@PathVariable("id") long id){
+        colorOwners.deleteById(id);
+        return "redirect:/";
     }
 
     @PostConstruct

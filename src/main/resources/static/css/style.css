@@ -10,6 +10,20 @@ label {
     font-weight: bold;
 }
 
+.jumbotron-fluid
+{
+    background: url("/img/colors.jpg");
+    background-position:center;
+}
+
+.text-sm-center {
+    font-family: 'Courgette', cursive;
+    border-radius: 10px;
+    background-color: cornsilk;
+    color: black;
+    padding: 5px;
+}
+
 #post-image {
     width: 100%;
     /* Images default to being inline, inline items cannot have a width, so change to block: */
